@@ -1,0 +1,7 @@
+fastapi
+uvicorn
+sqlalchemy
+sqlalchemy_utils
+fastapi_jwt_auth
+python-jose
+python-multipart

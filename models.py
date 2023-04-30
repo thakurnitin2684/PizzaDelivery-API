@@ -3,7 +3,7 @@ from sqlalchemy import Column,Integer,Boolean,Text,String,ForeignKey
 from sqlalchemy.orm import relationship
 from sqlalchemy_utils.types import ChoiceType
 
-
+ 
 class User(Base):
     __tablename__='user'
     id=Column(Integer,primary_key=True)

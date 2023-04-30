@@ -1,11 +1,19 @@
 from sqlalchemy import create_engine
-from sqlalchemy.orm import declarative_base,sessionmaker
+from sqlalchemy.ext.declarative import declarative_base
+from sqlalchemy.orm import sessionmaker
 
+SQLALCHAMY_DATABASE_URL = 'sqlite:///./pizza.db'
 
-engine=create_engine('postgresql://postgres:nathanoj35@localhost/pizza_delivery',
-    echo=True
-)
+engine = create_engine(SQLALCHAMY_DATABASE_URL, connect_args={
+                       "check_same_thread": False})
 
-Base=declarative_base()
+SessionLocal = sessionmaker(bind=engine, autocommit=False, autoflush=False,)
 
-Session=sessionmaker()
+Base = declarative_base()
+
+def get_db():
+    db = SessionLocal()
+    try:
+        yield db
+    finally:
+        db.close()
